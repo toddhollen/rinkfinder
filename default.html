@@ -13,18 +13,28 @@
 <header>
 
 <h1>Ice Rink Finder</h1>
-<h2>Find a Rink Near You</h2>
 
 </header>
 
-<iframe
-    width="600"
-    height="450"
-    frameborder="0" style="border:0"
-    src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCxe8f6_fK-QRg-MLzAMA2B8cv9OLWBo3I
-      &q=ice+rink">
-  </iframe>
+<section class="request">
+
+<h2>To find the rinks in your area, enter your zip code below.</h2>
+
+	<form class="zipcode" onsubmit="return false;">
+		<input class="form" type="text" placeholder="Enter Zip Code" name="zip" required>
+		<input class= "button" type="submit" value="Submit">
+	</form>
+
+</section>
+
+     <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCxe8f6_fK-QRg-MLzAMA2B8cv9OLWBo3I">
+    </script>
+   
+ 
+<div id="map-canvas"></div>
 
 
 
 </body>
+</html>
