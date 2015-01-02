@@ -15,8 +15,8 @@ $(document).ready(function($) {
     mapOptions);
 
       }
-      google.maps.event.addDomListener(window, 'load', initialize);
 
+      google.maps.event.addDomListener(window, 'load', initialize);
 
 });
 
@@ -28,10 +28,9 @@ $('.form').submit( function(event){
   		// get the value of the zipcode user submitted to zip form
 		var location = $(this).find("input[name='zip']").val();
 
-
 		console.log(location);
 
-	});
+});
 
 
 
