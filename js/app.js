@@ -1,12 +1,12 @@
 $(document).ready(function($) {
 
- var map;
+var map;
 var service;
 
 function initialize() {
   map = new google.maps.Map(document.getElementById('map-canvas'), {
-    center: new google.maps.LatLng(80903),
-    zoom: 15
+    center: new google.maps.LatLng(38.833882, -104.821363),
+    zoom: 5
   });
 
   infoWindow = new google.maps.InfoWindow();
@@ -18,7 +18,7 @@ function initialize() {
 function performSearch() {
   var request = {
     bounds: map.getBounds(),
-    keyword: 'ice rinks'
+    query: 'ice rinks'
   };
   service.radarSearch(request, callback);
 }
