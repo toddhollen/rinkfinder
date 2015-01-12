@@ -17,7 +17,7 @@ $(document).ready(function($) {
     service = new google.maps.places.PlacesService(map);
 
     // google.maps.event.addListenerOnce(map, 'bounds_changed', performSearch);
-    performSearch();
+    // performSearch();
   }
 
   // function performSearch() {
@@ -55,8 +55,6 @@ $(document).ready(function($) {
   google.maps.event.addDomListener(window, 'load', initialize);
 
 
-
-
   // Cancel defualt form submit
   $('form').on('submit', function(event){ 
     event.preventDefault(); 
@@ -68,14 +66,21 @@ $(document).ready(function($) {
       event.preventDefault();
 
       // get the value of the zipcode user submitted to zip form
-      var mapNewCenter = $('form').find("input[name='zip']").val();
+      var zipcode = $('form').find("input[name='zip']").val();
       performNewSearch();
 
   })
 
+// Change zipcode to LatLng
+
+  var mapNewCenter= new google.maps.Geocoder.geocode(zipcode);
+
+
+
+// Perform search with new Latlng
   function performNewSearch() {
     var request = {
-      location: mapCenter,
+      location: mapNewCenter,
       radius: '10',
       query: 'rink'
     };
