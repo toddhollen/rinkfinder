@@ -20,15 +20,15 @@ $(document).ready(function($) {
     performSearch();
   }
 
-  function performSearch() {
-    var request = {
-      location: mapCenter,
-      radius: '50',
-      query: 'ice rink'
-    };
+  // function performSearch() {
+  //   var request = {
+  //     location: mapCenter,
+  //     radius: '5',
+  //     query: '#'
+  //   };
     
-    service.textSearch(request, callback);
-  }
+  //   service.textSearch(request, callback);
+  // }
 
   function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -69,19 +69,19 @@ $(document).ready(function($) {
 
       // get the value of the zipcode user submitted to zip form
       var mapNewCenter = $('form').find("input[name='zip']").val();
+      performNewSearch();
 
-  function performSearch() {
+  })
+
+  function performNewSearch() {
     var request = {
-      location: mapNewCenter,
-      radius: '50',
-      query: 'ice rink'
+      location: mapCenter,
+      radius: '10',
+      query: 'rink'
     };
     
     service.textSearch(request, callback);
   }
-
-
-  });
 
 
 }); // End of document.ready
