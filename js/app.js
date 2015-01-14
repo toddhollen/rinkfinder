@@ -37,6 +37,7 @@ $(document).ready(function($) {
         createMarker(results[i]);
       }
     }
+
   }
 
   function createMarker(place) {
@@ -67,25 +68,43 @@ $(document).ready(function($) {
 
       // get the value of the zipcode user submitted to zip form
       var zipcode = $('form').find("input[name='zip']").val();
-      performNewSearch();
 
-  })
+      // geocoder api string using zipcode for geometry object
+      var zipCodeUrl = "http://maps.googleapis.com/maps/api/geocode/json?address="+zipcode;
 
-// Change zipcode to LatLng
+      // Get the Geometry object from Geocoder API
+      var geoObject = $.get( zipCodeUrl, function(response){
+        // Parse geometry object to use in performSearch function
+        var locationObjectParent = response.results[0];
+        var locationObject = locationObjectParent.geometry.location;
+        
+        // Create map center to pass into performSearch
+        var newMapCenter = new google.maps.LatLng(locationObject.lat, locationObject.lng);
 
-  var mapNewCenter= new google.maps.Geocoder.geocode(zipcode);
+        // Run Perform new Search
+        performNewSearch(newMapCenter);
+        
+      });
+      
+      
+
+  });
 
 
 
 // Perform search with new Latlng
-  function performNewSearch() {
+  function performNewSearch(newMapCenter) {
     var request = {
-      location: mapNewCenter,
+      location: newMapCenter,
       radius: '10',
-      query: 'rink'
+      query: 'ice rink'
     };
     
     service.textSearch(request, callback);
+    map = new google.maps.Map(document.getElementById('map-canvas'), {
+      center: newMapCenter,
+      zoom: 10
+    });
   }
 
 
